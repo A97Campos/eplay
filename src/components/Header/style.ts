@@ -4,6 +4,7 @@ import { cores } from '../../styles'
 export const HeaderBar = styled.header`
   background-color: ${cores.cinza};
   padding: 24px;
+  margin-bottom: 80px;
   border-radius: 16px;
   display: flex;
   align-items: center;

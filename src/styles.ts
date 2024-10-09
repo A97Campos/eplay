@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 export const cores = {
   preta: '#111111',
@@ -21,9 +21,8 @@ export const GlobalCss = createGlobalStyle`
 body {
   background-color: ${cores.preta};
 }
-`
 
-export const Container = styled.div`
+.container {
   max-width: 1024px;
   width: 80%;
   margin: 0 auto;
@@ -32,4 +31,5 @@ export const Container = styled.div`
   @media only screen and (min-width: 600px) {
     width: 100%;
   }
+}
 `
