@@ -4,7 +4,7 @@ import { TagsContainer } from '../Tags/style'
 
 export const Card = styled.div`
   margin-bottom: 8px;
-  padding: 8px;
+  padding: 8px 8px 16px 8px;
   border-radius: 8px;
   background-color: ${cores.cinza};
   position: relative;
