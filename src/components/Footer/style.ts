@@ -19,6 +19,7 @@ export const Title = styled.h4`
 
 export const Links = styled.ul`
   display: flex;
+  flex-wrap: wrap;
 `
 
 export const Link = styled.a`

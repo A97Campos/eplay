@@ -16,10 +16,6 @@ export const Container = styled.section<Omit<Props, 'title' | 'games'>>`
 `
 
 export const List = styled.ul`
-  img {
-    align-items: center;
-  }
-
   @media only screen and (min-width: 600px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
