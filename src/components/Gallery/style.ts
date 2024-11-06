@@ -28,7 +28,7 @@ export const Item = styled.li`
   border-radius: 8px;
   margin-bottom: 16px;
   overflow: hidden;
-  widht: 100%;
+  width: 100%;
   height: 300px;
 
   &:hover {
@@ -48,5 +48,44 @@ export const Item = styled.li`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+`
+
+export const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  height: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.73);
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.visivel {
+    display: flex;
+  }
+`
+
+export const ModalContent = styled.div`
+  max-width: 960px;
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    font-size: 18px;
+    font-weight: 700;
+
+    img {
+      cursor: pointer;
+    }
+  }
+
+  > img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
   }
 `
