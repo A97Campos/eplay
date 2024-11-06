@@ -7,7 +7,23 @@ export const Items = styled.ul`
   }
 `
 
+export const Action = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.73);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.5s ease;
+`
+
 export const Item = styled.li`
+  position: relative;
   border: 2px solid ${cores.branca};
   border-radius: 8px;
   margin-bottom: 16px;
@@ -15,16 +31,22 @@ export const Item = styled.li`
   widht: 100%;
   height: 300px;
 
+  &:hover {
+    ${Action} {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+  }
+
   @media only screen and (min-width: 600px) {
     width: 150px;
     height: 150px;
     margin-right: 16px;
   }
 
-  img {
+  > img {
     width: 100%;
     height: 100%;
-    overflow: hidden;
     object-fit: cover;
   }
 `

@@ -3,6 +3,8 @@ import { Hero } from '../../components/Hero'
 import { Section } from '../../components/Section'
 import { Gallery } from '../../components/Gallery'
 
+import residentEvil from '../../assets/images/resident.png'
+
 export const Product = () => {
   const { id } = useParams()
 
@@ -43,7 +45,7 @@ export const Product = () => {
           </li>
         </ul>
       </Section>
-      <Gallery />
+      <Gallery nome="Nome do jogo" defaultCover={residentEvil} />
     </>
   )
 }
