@@ -9,8 +9,9 @@ import zoom from '../../assets/images/zoom.png'
 import play from '../../assets/images/play.png'
 import fechar from '../../assets/images/fechar.png'
 import { useState } from 'react'
+import { isVisible } from '@testing-library/user-event/dist/utils'
 
-type GalleryItem = {
+interface GalleryItem {
   type: 'image' | 'video'
   url: string
 }
@@ -26,7 +27,7 @@ const mock: GalleryItem[] = [
   },
   {
     type: 'video',
-    url: 'https://youtu.be/25y1b5yHi18?si=-B68oub4Cz9oaCjs'
+    url: 'https://www.youtube.com/embed/25y1b5yHi18?si=lO0X56mILNM4bnRG&amp;controls=0'
   }
 ]
 
@@ -34,9 +35,17 @@ type Props = {
   defaultCover: string
   nome: string
 }
+
+interface ModalState extends GalleryItem {
+  isVisible: boolean
+}
+
 export const Gallery = ({ defaultCover, nome }: Props) => {
-  const [modalEstaAberto, setModalEstaAberto] = useState(false)
-  const [modalUrl, setModalUrl] = useState('')
+  const [modal, setModal] = useState<ModalState>({
+    isVisible: false,
+    type: 'image',
+    url: ''
+  })
 
   const getMediaCover = (item: GalleryItem) => {
     if (item.type === 'image') return item.url
@@ -47,6 +56,14 @@ export const Gallery = ({ defaultCover, nome }: Props) => {
     return play
   }
 
+  const closeModal = () => {
+    setModal({
+      isVisible: false,
+      type: 'image',
+      url: ''
+    })
+  }
+
   return (
     <>
       <Section background="black" title="Galeria">
@@ -55,8 +72,11 @@ export const Gallery = ({ defaultCover, nome }: Props) => {
             <Item
               key={media.url}
               onClick={() => {
-                setModalEstaAberto(true)
-                setModalUrl(media.url)
+                setModal({
+                  isVisible: true,
+                  type: media.type,
+                  url: media.url
+                })
               }}
             >
               <img
@@ -70,17 +90,24 @@ export const Gallery = ({ defaultCover, nome }: Props) => {
           ))}
         </Items>
       </Section>
-      <Modal className={modalEstaAberto ? 'visivel' : ''}>
+      <Modal
+        className={modal.isVisible ? 'visivel' : ''}
+        onClick={() => closeModal()}
+      >
         <ModalContent className="container">
           <header>
             <h4>{nome}</h4>
             <img
               src={fechar}
               alt="Botao de fechar"
-              onClick={() => setModalEstaAberto(false)}
+              onClick={() => closeModal()}
             />
           </header>
-          <img src={modalUrl} alt="" />
+          {modal.type === 'image' ? (
+            <img src={modal.url} alt="" />
+          ) : (
+            <iframe src={modal.url} />
+          )}
         </ModalContent>
       </Modal>
     </>
