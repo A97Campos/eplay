@@ -1,104 +1,51 @@
+import { useEffect, useState } from 'react'
 import { ProductList } from '../../components/ProductList'
-import { Game } from '../../models/Game'
+import { Game } from '../Home'
 
-import resident from '../../assets/images/resident.png'
-import starWars from '../../assets/images/star_wars.png'
-import diablo from '../../assets/images/diablo.png'
-import zelda from '../../assets/images/zelda.png'
-import fifa from '../../assets/images/fifa.png'
-import streetFighter from '../../assets/images/streetFighter.png'
+export const Categories = () => {
+  const [gamesAcao, setGamesAcao] = useState<Game[]>([])
+  const [gamesEsportes, setGamesEsportes] = useState<Game[]>([])
+  const [gamesLuta, setGamesLuta] = useState<Game[]>([])
+  const [gamesRpg, setGamesRpg] = useState<Game[]>([])
+  const [gamesSimulacao, setGamesSimulacao] = useState<Game[]>([])
 
-const promocoes: Game[] = [
-  {
-    id: 1,
-    category: 'Ação',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    title: 'Resident Evil 4',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['10%', 'R$250,00'],
-    image: resident
-  },
-  {
-    id: 2,
-    category: 'Ação',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    title: 'Resident Evil 4',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['-10%', 'R$250,00'],
-    image: resident
-  },
-  {
-    id: 3,
-    category: 'Esporte',
-    description:
-      'EA SPORTS™ FIFA 23 traz o Jogo de Todo Mundo aos gramados com a tecnologia HyperMotion2...',
-    title: 'Fifa 23',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['-50%', 'R$99,00'],
-    image: fifa
-  },
-  {
-    id: 4,
-    category: 'Esporte',
-    description:
-      'EA SPORTS™ FIFA 23 traz o Jogo de Todo Mundo aos gramados com a tecnologia HyperMotion2...',
-    title: 'Fifa 23',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['-50%', 'R$99,00'],
-    image: fifa
-  }
-]
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/eplay/acao')
+      .then((res) => res.json())
+      .then((res) => setGamesAcao(res))
 
-const emBreve: Game[] = [
-  {
-    id: 5,
-    category: 'RPG',
-    description:
-      'Diablo IV é um RPG de ação em desenvolvimento pela Blizzard Entertainment.',
-    title: 'Diablo IV',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: diablo
-  },
-  {
-    id: 6,
-    category: 'Aventura',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    title: 'Star Wars Jedi Survivor',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: starWars
-  },
-  {
-    id: 7,
-    category: 'Luta',
-    description:
-      'Street Fighter 6 é um próximo jogo de luta desenvolvido e publicado pela Capcom.',
-    title: 'Street Fighter 6',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: streetFighter
-  },
-  {
-    id: 8,
-    category: 'RPG',
-    description:
-      'Uma aventura épica pela terra e pelos céus de Hyrule aguarda em The Legend of Zelda™...',
-    title: 'The Legend of Zelda - TOK',
-    system: 'Switch',
-    infos: ['05/04'],
-    image: zelda
-  }
-]
+    fetch('https://fake-api-tau.vercel.app/api/eplay/esportes')
+      .then((res) => res.json())
+      .then((res) => setGamesEsportes(res))
 
-export const Categories = () => (
-  <>
-    <ProductList title="RPG" games={promocoes} background={'gray'} />
-    <ProductList title="Ação" games={emBreve} background={'black'} />
-    <ProductList title="Aventura" games={promocoes} background={'gray'} />
-    <ProductList title="FPS" games={emBreve} background={'black'} />
-  </>
-)
+    fetch('https://fake-api-tau.vercel.app/api/eplay/luta')
+      .then((res) => res.json())
+      .then((res) => setGamesLuta(res))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/rpg')
+      .then((res) => res.json())
+      .then((res) => setGamesRpg(res))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/simulacao')
+      .then((res) => res.json())
+      .then((res) => setGamesSimulacao(res))
+  })
+
+  return (
+    <>
+      <ProductList title="Ação" games={gamesAcao} background={'gray'} />
+      <ProductList
+        title="Esportes"
+        games={gamesEsportes}
+        background={'black'}
+      />
+      <ProductList title="Luta" games={gamesLuta} background={'gray'} />
+      <ProductList title="Rpg" games={gamesRpg} background={'black'} />
+      <ProductList
+        title="Simulação"
+        games={gamesSimulacao}
+        background={'gray'}
+      />
+    </>
+  )
+}

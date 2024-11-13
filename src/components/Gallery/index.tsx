@@ -1,3 +1,6 @@
+import { useState } from 'react'
+
+import { GalleryItem } from '../../pages/Home'
 import { Section } from '../Section'
 
 import { Items, Item, Action, Modal, ModalContent } from './style'
@@ -8,13 +11,6 @@ import hogwartsFundo from '../../assets/images/fundo_hogwarts.png'
 import zoom from '../../assets/images/zoom.png'
 import play from '../../assets/images/play.png'
 import fechar from '../../assets/images/fechar.png'
-import { useState } from 'react'
-import { isVisible } from '@testing-library/user-event/dist/utils'
-
-interface GalleryItem {
-  type: 'image' | 'video'
-  url: string
-}
 
 const mock: GalleryItem[] = [
   {

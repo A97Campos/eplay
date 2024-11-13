@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react'
+
 import { Banner } from '../../components/Banner'
 import { ProductList } from '../../components/ProductList'
-import { Game } from '../../models/Game'
 
 import resident from '../../assets/images/resident.png'
 import starWars from '../../assets/images/star_wars.png'
@@ -9,96 +10,54 @@ import zelda from '../../assets/images/zelda.png'
 import fifa from '../../assets/images/fifa.png'
 import streetFighter from '../../assets/images/streetFighter.png'
 
-const promocoes: Game[] = [
-  {
-    id: 1,
-    category: 'Ação',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    title: 'Resident Evil 4',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['10%', 'R$250,00'],
-    image: resident
-  },
-  {
-    id: 2,
-    category: 'Ação',
-    description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    title: 'Resident Evil 4',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['-10%', 'R$250,00'],
-    image: resident
-  },
-  {
-    id: 3,
-    category: 'Esporte',
-    description:
-      'EA SPORTS™ FIFA 23 traz o Jogo de Todo Mundo aos gramados com a tecnologia HyperMotion2...',
-    title: 'Fifa 23',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['-50%', 'R$99,00'],
-    image: fifa
-  },
-  {
-    id: 4,
-    category: 'Esporte',
-    description:
-      'EA SPORTS™ FIFA 23 traz o Jogo de Todo Mundo aos gramados com a tecnologia HyperMotion2...',
-    title: 'Fifa 23',
-    system: 'Windows, Ps5 e Xbox',
-    infos: ['-50%', 'R$99,00'],
-    image: fifa
-  }
-]
+export interface GalleryItem {
+  type: 'image' | 'video'
+  url: string
+}
 
-const emBreve: Game[] = [
-  {
-    id: 5,
-    category: 'RPG',
-    description:
-      'Diablo IV é um RPG de ação em desenvolvimento pela Blizzard Entertainment.',
-    title: 'Diablo IV',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: diablo
-  },
-  {
-    id: 6,
-    category: 'Aventura',
-    description:
-      'Star Wars Jedi: Survivor é um próximo jogo de ação e aventura desenvolvido pela Respawn...',
-    title: 'Star Wars Jedi Survivor',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: starWars
-  },
-  {
-    id: 7,
-    category: 'Luta',
-    description:
-      'Street Fighter 6 é um próximo jogo de luta desenvolvido e publicado pela Capcom.',
-    title: 'Street Fighter 6',
-    system: 'Windows',
-    infos: ['05/04'],
-    image: streetFighter
-  },
-  {
-    id: 8,
-    category: 'RPG',
-    description:
-      'Uma aventura épica pela terra e pelos céus de Hyrule aguarda em The Legend of Zelda™...',
-    title: 'The Legend of Zelda - TOK',
-    system: 'Switch',
-    infos: ['05/04'],
-    image: zelda
+export type Game = {
+  id: number
+  name: string
+  description: string
+  relase_date?: string
+  prices: {
+    discount?: number
+    old?: number
+    current?: number
   }
-]
+  details: {
+    category: string
+    system: string
+    developer: string
+    publisher: string
+    languages: string[]
+  }
+  media: {
+    thumbnail: string
+    cover: string
+    gallery: GalleryItem[]
+  }
+}
 
-export const Home = () => (
-  <>
-    <Banner />
-    <ProductList games={promocoes} title="Promoções" background="gray" />
-    <ProductList games={emBreve} title="Em Breve" background="black" />
-  </>
-)
+export const Home = () => {
+  const [promocoes, setPromocoes] = useState<Game[]>([])
+  const [emBreve, setEmBreve] = useState<Game[]>([])
+
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/eplay/promocoes')
+      .then((res) => res.json())
+      .then((res) => setPromocoes(res))
+
+    fetch('https://fake-api-tau.vercel.app/api/eplay/em-breve')
+      .then((res) => res.json())
+      .then((res) => setEmBreve(res))
+  })
+
+  return (
+    <>
+      <Banner />
+      <ProductList games={promocoes} title="Promoções" background="gray" />
+      <ProductList games={emBreve} title="Em Breve" background="black" />
+    </>
+  )
+}

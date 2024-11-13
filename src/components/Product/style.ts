@@ -10,7 +10,10 @@ export const Card = styled.div`
   position: relative;
 
   img {
+    display: bolock;
     width: 100%;
+    height: 250px;
+    object-fit: cover;
   }
 
   ${TagsContainer} {
