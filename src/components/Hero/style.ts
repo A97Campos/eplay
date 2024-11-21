@@ -53,6 +53,7 @@ export const Infos = styled.div`
 
     span {
       display: block;
+      text-decoration: line-through;
     }
   }
 `

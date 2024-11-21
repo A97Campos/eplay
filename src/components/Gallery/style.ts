@@ -78,15 +78,18 @@ export const ModalContent = styled.div`
     font-size: 18px;
     font-weight: 700;
 
-    img {
+    > img {
       cursor: pointer;
     }
   }
 
-  > img,
+  > img {
+    width: 100%;
+  }
+
+  img,
   iframe {
     display: block;
-    margin: 0 auto;
     max-width: 100%;
   }
 
