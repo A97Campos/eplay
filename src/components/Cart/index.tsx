@@ -24,6 +24,7 @@ export const Cart = () => {
               <Tags>PS5</Tags>
               <p>R$ 190,90</p>
             </div>
+            <button type="button" />
           </CartItem>
           <CartItem>
             <img src={starWars} />
@@ -33,6 +34,7 @@ export const Cart = () => {
               <Tags>PS5</Tags>
               <p>R$ 190,90</p>
             </div>
+            <button type="button" />
           </CartItem>
         </ul>
         <div>
