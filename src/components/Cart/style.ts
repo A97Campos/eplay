@@ -22,8 +22,12 @@ export const CartContainer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 1;
-  display: flex;
+  display: none;
   justify-content: end;
+
+  &.isOpen {
+    display: flex;
+  }
 `
 
 export const Sidebar = styled.aside`

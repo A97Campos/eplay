@@ -26,8 +26,9 @@ export const LinkItem = styled.li`
   margin-left: 16px;
 `
 
-export const LinkCard = styled.a`
+export const CartButton = styled.a`
   display: flex;
+  cursor: pointer;
 
   img {
     margin-left: 16px;
