@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { Tags } from '../Tags'
-import starWars from '../../assets/images/star_wars.png'
 import {
   CartContainer,
   Overlay,
@@ -11,10 +10,11 @@ import {
   Quantity
 } from './style'
 import { Button } from '../Button'
-import { close } from '../../store/reducers/cart'
+import { close, remove } from '../../store/reducers/cart'
+import { formataPreco } from '../ProductList'
 
 export const Cart = () => {
-  const { isOpen } = useSelector((state: RootReducer) => state.cart)
+  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
 
@@ -22,36 +22,38 @@ export const Cart = () => {
     dispatch(close())
   }
 
+  const getTotalPrice = () => {
+    return items.reduce((acumulador, valorAtual) => {
+      return (acumulador += valorAtual.prices.current!)
+    }, 0)
+  }
+
+  const removeItem = (id: number) => {
+    dispatch(remove(id))
+  }
+
   return (
     <CartContainer className={isOpen ? 'isOpen' : ''}>
       <Overlay onClick={closeCart} />
       <Sidebar>
         <ul>
-          <CartItem>
-            <img src={starWars} />
-            <div>
-              <h3>nome do jogo</h3>
-              <Tags>RPG</Tags>
-              <Tags>PS5</Tags>
-              <p>R$ 190,90</p>
-            </div>
-            <button type="button" />
-          </CartItem>
-          <CartItem>
-            <img src={starWars} />
-            <div>
-              <h3>nome do jogo</h3>
-              <Tags>RPG</Tags>
-              <Tags>PS5</Tags>
-              <p>R$ 190,90</p>
-            </div>
-            <button type="button" />
-          </CartItem>
+          {items.map((item) => (
+            <CartItem key={item.id}>
+              <img src={item.media.thumbnail} />
+              <div>
+                <h3>{item.name}</h3>
+                <Tags>{item.details.category}</Tags>
+                <Tags>{item.details.system}</Tags>
+                <p>{formataPreco(item.prices.current)}</p>
+              </div>
+              <button onClick={() => removeItem(item.id)} type="button" />
+            </CartItem>
+          ))}
         </ul>
         <div>
-          <Quantity>2 jogo(s) no carrinho</Quantity>
+          <Quantity>{items.length} jogo(s) no carrinho</Quantity>
           <Prices>
-            Total de R$ 381,80
+            Total de {formataPreco(getTotalPrice())}
             <span>em até 6x sem juros</span>
           </Prices>
         </div>

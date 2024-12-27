@@ -53,10 +53,11 @@ export const CartItem = styled.li`
     height: 80px;
     width: 80px;
     margin-right: 23px;
+    object-fit: cover;
   }
 
   ${TagsContainer} {
-    margin: 8px 0 16px 0;
+    margin: 8px 8px 16px 0;
   }
 
   button {
