@@ -4,6 +4,7 @@ import { cores } from '../../styles'
 import { TagsContainer } from '../Tags/style'
 
 export const Card = styled(Link)`
+  height: 450px;
   margin-bottom: 8px;
   padding: 8px 8px 16px 8px;
   border-radius: 8px;

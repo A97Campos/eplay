@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
+import { HashLink } from 'react-router-hash-link'
 
 export const ContainerFooter = styled.footer`
   background-color: ${cores.cinza};
@@ -22,7 +23,7 @@ export const Links = styled.ul`
   flex-wrap: wrap;
 `
 
-export const Link = styled.a`
+export const Link = styled(HashLink)`
   color: ${cores.cinzaClaro};
   margin-right: 8px;
 `
