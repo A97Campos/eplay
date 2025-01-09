@@ -6,6 +6,7 @@ export const ContainerFooter = styled.footer`
   background-color: ${cores.cinza};
   font-size: 14px;
   padding-bottom: 32px;
+  margin-top: 40px;
 `
 
 export const SectionFooter = styled.section`
