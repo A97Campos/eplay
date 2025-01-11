@@ -1,8 +1,13 @@
 import { Button } from '../../components/Button'
 import { Card } from '../../components/Card'
-import { InfoGroup, Row } from './style'
+import { InfoGroup, Row, TabButton } from './style'
+
+import boletoImg from '../../assets/images/barcode.png'
+import cardImg from '../../assets/images/credit-card.png'
+import { useState } from 'react'
 
 export const Chekout = () => {
+  const [payWithCard, setPayWithCard] = useState(true)
   return (
     <div className="container">
       <Card title="Dados de cobrança">
@@ -35,15 +40,80 @@ export const Chekout = () => {
         </>
       </Card>
       <Card title="Pagamento">
-        <div>
-          <p>
-            Ao optar por essa forma de pagamento, é importante lembrar que a
-            confirmação pode levar até 3 dias úteis, devido aos prazos
-            estabelecidos pelas instituições financeiras. Portanto, a liberação
-            do código de ativação do jogo adquirido ocorrerá somente após a
-            aprovação do pagamento do boleto.
-          </p>
-        </div>
+        <>
+          <div>
+            <TabButton
+              isActive={payWithCard}
+              onClick={() => setPayWithCard(true)}
+            >
+              <img src={boletoImg} alt="Boleto bancário" />
+              Boleto bancário
+            </TabButton>
+            <TabButton
+              isActive={!payWithCard}
+              onClick={() => setPayWithCard(false)}
+            >
+              <img src={cardImg} alt="Cartão de crédito" />
+              Cartão de crédito
+            </TabButton>
+          </div>
+          {payWithCard ? (
+            <div>
+              <p>
+                Ao optar por essa forma de pagamento, é importante lembrar que a
+                confirmação pode levar até 3 dias úteis, devido aos prazos
+                estabelecidos pelas instituições financeiras. Portanto, a
+                liberação do código de ativação do jogo adquirido ocorrerá
+                somente após a aprovação do pagamento do boleto.
+              </p>
+            </div>
+          ) : (
+            <>
+              <Row>
+                <InfoGroup>
+                  <label htmlFor="cardOwner">Nome do titular do cartão</label>
+                  <input type="text" id="cardOwner" />
+                </InfoGroup>
+                <InfoGroup>
+                  <label htmlFor="cpfCardOwner">Cpf do titular do cartão</label>
+                  <input type="text" id="cpfCardOwner" />
+                </InfoGroup>
+              </Row>
+              <Row marginTop="16px">
+                <InfoGroup>
+                  <label htmlFor="cardDisplayName">Nome do cartão</label>
+                  <input type="text" id="cardDisplayName" />
+                </InfoGroup>
+                <InfoGroup>
+                  <label htmlFor="">Numero do cartão</label>
+                  <input type="text" id="cardNumber" />
+                </InfoGroup>
+                <InfoGroup maxWidth="123px">
+                  <label htmlFor="expiresMonth">Mês do vencimento</label>
+                  <input type="text" id="expiresMonth" />
+                </InfoGroup>
+                <InfoGroup maxWidth="123px">
+                  <label htmlFor="expiresYear">Ano de vencimento</label>
+                  <input type="text" id="expiresYear" />
+                </InfoGroup>
+                <InfoGroup maxWidth="48px">
+                  <label htmlFor="cardCode">CVV</label>
+                  <input type="text" id="cardCode" />
+                </InfoGroup>
+              </Row>
+              <Row>
+                <InfoGroup maxWidth="116px">
+                  <label htmlFor="installments">Parcelamento</label>
+                  <select id="installments">
+                    <option>1x de R$ 200</option>
+                    <option>2x de R$ 200</option>
+                    <option>3x de R$ 200</option>
+                  </select>
+                </InfoGroup>
+              </Row>
+            </>
+          )}
+        </>
       </Card>
 
       <Button title="finalizar compra" type="button">
