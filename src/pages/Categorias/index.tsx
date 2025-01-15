@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
 import { ProductList } from '../../components/ProductList'
-import { Game } from '../Home'
 import {
   useGetActionGamesQuery,
   useGetFightGameQuery,
