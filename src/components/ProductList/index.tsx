@@ -1,5 +1,6 @@
 import { Game } from '../../pages/Home'
 import { Product } from '../Product'
+
 import { List, Container, Titulo } from './styles'
 
 export type Props = {

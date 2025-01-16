@@ -20,6 +20,7 @@ export const Action = styled.div`
   opacity: 0;
   cursor: pointer;
   transition: opacity 0.5s ease;
+  cursor: zoom-in;
 `
 
 export const Item = styled.li`

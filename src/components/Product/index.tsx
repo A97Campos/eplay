@@ -1,4 +1,5 @@
 import { Tags } from '../Tags'
+
 import { Card, Titulo, Descricao, Infos } from './style'
 
 export type Props = {
@@ -26,7 +27,10 @@ export const Product = ({
     }
   }
   return (
-    <Card to={`/product/${id}`}>
+    <Card
+      title={`clique aqui para ver mais detalhes do jogo: ${title}`}
+      to={`/product/${id}`}
+    >
       <img src={image} />
       <Infos>
         {infos.map((info) => (

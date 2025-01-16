@@ -1,11 +1,14 @@
-import { Game } from '../../pages/Home'
+import { useDispatch } from 'react-redux'
 
-import { Banner, Infos } from './style'
 import { Button } from '../Button'
 import { Tags } from '../Tags'
+
 import { formataPreco } from '../ProductList'
-import { useDispatch } from 'react-redux'
+
+import { Game } from '../../pages/Home'
 import { add, open } from '../../store/reducers/cart'
+
+import { Banner, Infos } from './style'
 
 type Props = {
   game: Game
