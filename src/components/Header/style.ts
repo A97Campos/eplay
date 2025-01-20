@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { breakpoint, cores } from '../../styles'
+import { breakpoint, colors } from '../../styles'
 
 export const Links = styled.ul`
   display: flex;
@@ -12,7 +12,7 @@ export const Links = styled.ul`
 `
 
 export const HeaderBar = styled.header`
-  background-color: ${cores.cinza};
+  background-color: ${colors.gray};
   padding: 24px;
   margin-bottom: 80px;
   border-radius: 16px;
@@ -47,7 +47,7 @@ export const NavMobile = styled.nav`
 `
 
 export const LinkItem = styled.li`
-  color: ${cores.branca};
+  color: ${colors.white};
   margin-left: 16px;
 
   @media (max-width: ${breakpoint.tablet}) {
@@ -86,7 +86,7 @@ export const Hamburguer = styled.div`
     height: 2px;
     display: block;
     width: 100%;
-    background-color: ${cores.branca};
+    background-color: ${colors.white};
     margin-bottom: 4px;
   }
 

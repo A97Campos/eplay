@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const cores = {
-  preta: '#111111',
-  cinza: '#333',
-  verde: '#10AC84',
-  branca: '#EEEEEE',
-  cinzaClaro: '#A3A3A3'
+export const colors = {
+  black: '#111111',
+  gray: '#333',
+  green: '#10AC84',
+  white: '#EEEEEE',
+  lightgray: '#A3A3A3'
 }
 
 export const breakpoint = {
@@ -21,11 +21,11 @@ export const GlobalCss = createGlobalStyle`
       font-family: "Roboto", sans-serif;
       list-style-type: none;
       text-decoration: none;
-      color: ${cores.branca};
+      color: ${colors.white};
 }
 
 body {
-  background-color: ${cores.preta};
+  background-color: ${colors.black};
 }
 
 .container {

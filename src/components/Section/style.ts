@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 
 import { Props } from '.'
-import { cores } from '../../styles'
+import { colors } from '../../styles'
 import { Card } from '../Product/style'
 
 export const Container = styled.section<Omit<Props, 'title' | 'games'>>`
   padding-bottom: 32px;
   background-color: ${(props) =>
-    props.background === 'black' ? cores.preta : cores.cinza};
+    props.background === 'black' ? colors.black : colors.gray};
 
   ${Card} {
     background-color: ${(props) =>
-      props.background === 'black' ? cores.cinza : cores.preta};
+      props.background === 'black' ? colors.gray : colors.black};
   }
 
   p,
@@ -22,6 +22,6 @@ export const Container = styled.section<Omit<Props, 'title' | 'games'>>`
   }
 `
 
-export const Titulo = styled.h2`
+export const Title = styled.h2`
   margin-bottom: 40px;
 `

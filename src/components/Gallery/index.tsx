@@ -6,9 +6,9 @@ import { GalleryItem } from '../../pages/Home'
 
 import zoom from '../../assets/images/zoom.png'
 import play from '../../assets/images/play.png'
-import fechar from '../../assets/images/fechar.png'
+import closeIcon from '../../assets/images/fechar.png'
 
-import { Items, Item, Action, Modal, ModalContent } from './style'
+import * as S from './style'
 
 type Props = {
   defaultCover: string
@@ -47,9 +47,9 @@ export const Gallery = ({ defaultCover, nome, items }: Props) => {
   return (
     <>
       <Section background="black" title="Galeria">
-        <Items>
+        <S.Items>
           {items.map((media, index) => (
-            <Item
+            <S.Item
               key={media.url}
               onClick={() => {
                 setModal({
@@ -63,33 +63,29 @@ export const Gallery = ({ defaultCover, nome, items }: Props) => {
                 src={getMediaCover(media)}
                 alt={`Midia ${index + 1} de nome do jogo`}
               />
-              <Action>
+              <S.Action>
                 <img src={getMediaIcon(media)} alt={nome} />
-              </Action>
-            </Item>
+              </S.Action>
+            </S.Item>
           ))}
-        </Items>
+        </S.Items>
       </Section>
-      <Modal
-        className={modal.isVisible ? 'visivel' : ''}
+      <S.Modal
+        className={modal.isVisible ? 'is-visible' : ''}
         onClick={() => closeModal()}
       >
-        <ModalContent className="container">
+        <S.ModalContent className="container">
           <header>
             <h4>{nome}</h4>
-            <img
-              src={fechar}
-              alt="Botao de fechar"
-              onClick={() => closeModal()}
-            />
+            <img src={closeIcon} alt="Botao de fechar" onClick={closeModal} />
           </header>
           {modal.type === 'image' ? (
             <img src={modal.url} alt="" />
           ) : (
             <iframe src={modal.url} />
           )}
-        </ModalContent>
-      </Modal>
+        </S.ModalContent>
+      </S.Modal>
     </>
   )
 }

@@ -7,10 +7,10 @@ import { Card } from '../../components/Card'
 
 import { usePurchaseMutation } from '../../services/api'
 
-import boletoImg from '../../assets/images/barcode.png'
+import barCode from '../../assets/images/barcode.png'
 import cardImg from '../../assets/images/credit-card.png'
 
-import { InfoGroup, Row, TabButton } from './style'
+import * as S from './style'
 
 export const Chekout = () => {
   const [payWithCard, setPayWithCard] = useState(false)
@@ -166,8 +166,8 @@ export const Chekout = () => {
         <form onSubmit={form.handleSubmit}>
           <Card title="Dados de cobrança">
             <>
-              <Row>
-                <InfoGroup>
+              <S.Row>
+                <S.InfoGroup>
                   <label htmlFor="fullName">Nome completo</label>
                   <input
                     type="text"
@@ -180,8 +180,8 @@ export const Chekout = () => {
                   <small>
                     {getErrorMessage('fullName', form.errors.fullName)}
                   </small>
-                </InfoGroup>
-                <InfoGroup>
+                </S.InfoGroup>
+                <S.InfoGroup>
                   <label htmlFor="email">E-mail</label>
                   <input
                     type="email"
@@ -192,8 +192,8 @@ export const Chekout = () => {
                     onBlur={form.handleBlur}
                   />
                   <small>{getErrorMessage('email', form.errors.email)}</small>
-                </InfoGroup>
-                <InfoGroup>
+                </S.InfoGroup>
+                <S.InfoGroup>
                   <label htmlFor="cpf">CPF</label>
                   <input
                     type="text"
@@ -204,11 +204,11 @@ export const Chekout = () => {
                     onBlur={form.handleBlur}
                   />
                   <small>{getErrorMessage('cpf', form.errors.cpf)}</small>
-                </InfoGroup>
-              </Row>
+                </S.InfoGroup>
+              </S.Row>
               <h3>Dados de entrega - conteúdo digital</h3>
-              <Row>
-                <InfoGroup>
+              <S.Row>
+                <S.InfoGroup>
                   <label htmlFor="deliveryEmail">E-mail</label>
                   <input
                     type="email"
@@ -224,8 +224,8 @@ export const Chekout = () => {
                       form.errors.deliveryEmail
                     )}
                   </small>
-                </InfoGroup>
-                <InfoGroup>
+                </S.InfoGroup>
+                <S.InfoGroup>
                   <label htmlFor="confirmDeliveryEmail">
                     Confirme o e-mail
                   </label>
@@ -243,32 +243,32 @@ export const Chekout = () => {
                       form.errors.confirmDeliveryEmail
                     )}
                   </small>
-                </InfoGroup>
-              </Row>
+                </S.InfoGroup>
+              </S.Row>
             </>
           </Card>
           <Card title="Pagamento">
             <>
               <div>
-                <TabButton
+                <S.TabButton
                   isActive={!payWithCard}
                   onClick={() => setPayWithCard(false)}
                 >
-                  <img src={boletoImg} alt="Boleto bancário" />
+                  <img src={barCode} alt="Boleto bancário" />
                   Boleto bancário
-                </TabButton>
-                <TabButton
+                </S.TabButton>
+                <S.TabButton
                   isActive={payWithCard}
                   onClick={() => setPayWithCard(true)}
                 >
                   <img src={cardImg} alt="Cartão de crédito" />
                   Cartão de crédito
-                </TabButton>
+                </S.TabButton>
               </div>
               {payWithCard ? (
                 <>
-                  <Row>
-                    <InfoGroup>
+                  <S.Row>
+                    <S.InfoGroup>
                       <label htmlFor="cardOwner">
                         Nome do titular do cartão
                       </label>
@@ -283,8 +283,8 @@ export const Chekout = () => {
                       <small>
                         {getErrorMessage('cardOwner', form.errors.cardOwner)}
                       </small>
-                    </InfoGroup>
-                    <InfoGroup>
+                    </S.InfoGroup>
+                    <S.InfoGroup>
                       <label htmlFor="cpfCardOwner">
                         Cpf do titular do cartão
                       </label>
@@ -302,10 +302,10 @@ export const Chekout = () => {
                           form.errors.cpfCardOwner
                         )}
                       </small>
-                    </InfoGroup>
-                  </Row>
-                  <Row marginTop="16px">
-                    <InfoGroup>
+                    </S.InfoGroup>
+                  </S.Row>
+                  <S.Row marginTop="16px">
+                    <S.InfoGroup>
                       <label htmlFor="cardDisplayName">Nome do cartão</label>
                       <input
                         type="text"
@@ -321,8 +321,8 @@ export const Chekout = () => {
                           form.errors.cardDisplayName
                         )}
                       </small>
-                    </InfoGroup>
-                    <InfoGroup>
+                    </S.InfoGroup>
+                    <S.InfoGroup>
                       <label htmlFor="">Numero do cartão</label>
                       <input
                         type="text"
@@ -335,8 +335,8 @@ export const Chekout = () => {
                       <small>
                         {getErrorMessage('cardNumber', form.errors.cardNumber)}
                       </small>
-                    </InfoGroup>
-                    <InfoGroup maxWidth="123px">
+                    </S.InfoGroup>
+                    <S.InfoGroup maxWidth="123px">
                       <label htmlFor="expiresMonth">Mês do vencimento</label>
                       <input
                         type="text"
@@ -352,8 +352,8 @@ export const Chekout = () => {
                           form.errors.expiresMonth
                         )}
                       </small>
-                    </InfoGroup>
-                    <InfoGroup maxWidth="123px">
+                    </S.InfoGroup>
+                    <S.InfoGroup maxWidth="123px">
                       <label htmlFor="expiresYear">Ano de vencimento</label>
                       <input
                         type="text"
@@ -369,8 +369,8 @@ export const Chekout = () => {
                           form.errors.expiresYear
                         )}
                       </small>
-                    </InfoGroup>
-                    <InfoGroup maxWidth="48px">
+                    </S.InfoGroup>
+                    <S.InfoGroup maxWidth="48px">
                       <label htmlFor="cardCode">CVV</label>
                       <input
                         type="text"
@@ -383,10 +383,10 @@ export const Chekout = () => {
                       <small>
                         {getErrorMessage('cardCode', form.errors.cardCode)}
                       </small>
-                    </InfoGroup>
-                  </Row>
-                  <Row>
-                    <InfoGroup maxWidth="116px">
+                    </S.InfoGroup>
+                  </S.Row>
+                  <S.Row>
+                    <S.InfoGroup maxWidth="116px">
                       <label htmlFor="installments">Parcelamento</label>
                       <select
                         id="installments"
@@ -405,8 +405,8 @@ export const Chekout = () => {
                           form.errors.installments
                         )}
                       </small>
-                    </InfoGroup>
-                  </Row>
+                    </S.InfoGroup>
+                  </S.Row>
                 </>
               ) : (
                 <div>
