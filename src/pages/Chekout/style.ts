@@ -31,6 +31,10 @@ export const InfoGroup = styled.div<InputGroupProps>`
     margin: 8px 0;
   }
 
+  option {
+    color: ${colors.black};
+  }
+
   input,
   select {
     height: 32px;
@@ -39,6 +43,10 @@ export const InfoGroup = styled.div<InputGroupProps>`
     background-color: ${colors.white};
     color: ${colors.black};
     widht: 100%;
+
+    &.error {
+      border: 1px solid red;
+    }
   }
 `
 
