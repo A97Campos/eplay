@@ -64,7 +64,7 @@ export const Modal = styled.div`
   align-items: center;
   justify-content: center;
 
-  &.is-visibel {
+  &.is-visible {
     display: flex;
   }
 `
@@ -81,6 +81,8 @@ export const ModalContent = styled.div`
 
     > img {
       cursor: pointer;
+      width: 16px;
+      height: 16px;
     }
   }
 
