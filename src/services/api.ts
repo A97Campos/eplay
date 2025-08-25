@@ -38,7 +38,7 @@ type PurchasePayload = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://ebac-fake-api.vercel.app/api/eplay/checkout'
+    baseUrl: 'https://ebac-fake-api.vercel.app/api/eplay'
   }),
   endpoints: (builder) => ({
     getFeaturedGame: builder.query<Game, void>({
